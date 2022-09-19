@@ -1,0 +1,4 @@
+# Default for all files
+
+# No crlf conversion. PRs that mess up the line endings are just going to be (politely) refused.
+* -text

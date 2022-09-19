@@ -1,0 +1,11 @@
+# Managed by gradlew
+/.gradle/
+/build/
+/out/
+
+# Managed by intellij idea
+/.idea/
+/*.iml
+
+# Managed by mac os
+.DS_Store

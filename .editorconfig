@@ -1,0 +1,17 @@
+# Topmost EditorConfig file, see https://editorconfig.org/
+root = true
+
+[*]
+# Unix-style line end. Editors that cannot handle this exist but have become irrelevant in developers' lives.
+end_of_line = lf
+# Having trailing whitespace in files just invites error and spurious differences in git diff.
+trim_trailing_whitespace = true
+# Avoid spurious output in git diff
+insert_final_newline = true
+# Indent style is arbitrary but should be fixed for any project.
+indent_style = space
+indent_size = 4
+
+[*.md]
+# Unfortunately, Markdown does use significant trailing whitespace.
+trim_trailing_whitespace = false
