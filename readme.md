@@ -16,10 +16,8 @@ It uses:
 * Some annotation processors generate code that expects to interact with library
   code and/or annotations at runtime.
   You'd split the project into two modules:
-    * `<project>-runtime` with any required library code and annotations
+    * `foo-runtime` with any required library code and annotations
       on `@Retention(RUNTIME)`.
-    * `<project>-processor` with the annotation processor itself, and any
+    * `foo-processor` with the annotation processor itself, and any
       annotations that have a `@Retention` other than `RUNTIME`.
 * Deployment to Maven Central (or any other repository) isn't covered.
-* This needs a code review by somebody who knows Elementary.
-    * I believe some test resources are unused.
