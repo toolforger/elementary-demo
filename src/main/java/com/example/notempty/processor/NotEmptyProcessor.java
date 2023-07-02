@@ -51,14 +51,15 @@ public class NotEmptyProcessor extends AnnotationProcessor {
 
     // This demo code was written with each condition forked out into a separate function, so it can test each expected
     // failure mode in a separate test.
-    // This is totally overblown for such simple conditions as the ones we use here, and done only to demonstrate how to
-    // make conditions testable in this way.
+    // This kind of condition partitioning is of interest only if you really want to test that each individual
+    // condition is properly detect; if this were production code, you'd likely do this if you're going truly
+    // test-driven, and you'd likely test each condition exhaustively.
 
     static boolean isAMemberVariable(Element element) {
-        // Do NOT use `element instanceof VariableElement` here!
-        // The authors seem to consider the runtime class of an `Element` to be a pretty accidental implementation
-        // detail, and recommend using `getKind()` instead; as an added bonus, it is granular enough to distinguish all
-        // the different kinds of Java code elements, including whether it's an instance field or something else.
+        // General advice: To check whether you want to process an `Element`, use `element.getKind()`, not `instanceof`,
+        // as that is more precise, and possibly has better compatibility with future versions of the Java language
+        // that introduce new language constructs: It's almost guaranteed that new constructs will have new
+        // `ElementKind`s, but these may use existing `Element`-implementing classes.
         return element.getKind() == ElementKind.FIELD;
     }
 

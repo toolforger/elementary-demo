@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Meaning you'll want to write tiny source code separately for each test,
  * which can get awkward.
  * <p>
- * {@link WhiteBoxTest} demonstrates an alternate API
+ * {@link WhiteBoxTest} demonstrates an alternate API.
  */
 // This is a black-box test, so we need JavacExtension:
 @ExtendWith(JavacExtension.class)

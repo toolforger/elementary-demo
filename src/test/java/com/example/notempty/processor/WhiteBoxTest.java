@@ -1,6 +1,6 @@
 package com.example.notempty.processor;
 
-import com.karuslabs.elementary.junit.Cases;
+import com.karuslabs.elementary.junit.Labels;
 import com.karuslabs.elementary.junit.Tools;
 import com.karuslabs.elementary.junit.ToolsExtension;
 import com.karuslabs.elementary.junit.annotations.Inline;
@@ -28,31 +28,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Inline(name = "InvalidCases", source =
     """
         import com.example.notempty.annotation.NotEmpty;
-        import com.karuslabs.elementary.junit.annotations.Case;
+        import com.karuslabs.elementary.junit.annotations.Label;
 
         class TestSubject {
 
-            @Case("validCase")
+            @Label("validCase")
             @NotEmpty
             public final String field = "Hello World!";
 
-            @Case("notAMemberVariable")
+            @Label("notAMemberVariable")
             public void foo(@NotEmpty String str) {
             }
 
-            @Case("notOfStringType")
+            @Label("notOfStringType")
             @NotEmpty
             public final int intField = 0;
 
-            @Case("nonConstantInitializer")
+            @Label("nonConstantInitializer")
             @NotEmpty
             public final String nonConstantlyInitializedField = "HELLO".toLowerCase();
 
-            @Case("noInitializer")
+            @Label("noInitializer")
             @NotEmpty
             public String noInitializerField;
 
-            @Case("initializedWithNull")
+            @Label("initializedWithNull")
             @NotEmpty
             public final String nullStringField = null;
 
@@ -67,8 +67,8 @@ public class WhiteBoxTest {
     TypeMirrors types = Tools.typeMirrors();
 
     @Test
-    public void testValidCase(Cases cases) {
-        VariableElement element = (VariableElement) cases.one("validCase");
+    public void testValidCase(Labels labels) {
+        VariableElement element = (VariableElement) labels.get("validCase");
         assertTrue(NotEmptyProcessor.isAMemberVariable(element));
         assertTrue(NotEmptyProcessor.isOfStringType(types, element));
         assertTrue(NotEmptyProcessor.isInitializedWithAConstant(element));
