@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 // Anyway, this test showcases access to javax.lang.model.element.Element data,
 // i.e. the nodes of a java program AST; so this form of test is particularly
 // suited for inspecting Java code, checking how they are set up, and checking
-// that an annotation processor has the right decisionmaking for them. This
+// that an annotation processor has the right decision-making for them. This
 // allows for a style where you can write new Java code to test an annotation
 // processor against, at the drop of a hat.
 // Or you can set up intentionally-invalid cases and check that it triggers the
@@ -64,7 +64,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 )
 public class WhiteBoxTest {
 
-    TypeMirrors types = Tools.typeMirrors();
+    private final TypeMirrors types = Tools.typeMirrors();
 
     @Test
     public void testValidCase(Labels labels) {

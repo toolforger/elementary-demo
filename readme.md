@@ -10,7 +10,7 @@ The project has been tested with Gradle 7.5.1, and it should work with Gradle 8.
 
 The following is _not_ covered:
 
-* Writing an code-generating annotation processor where the generated code requires runtime code
+* Writing a code-generating annotation processor where the generated code requires runtime code
   or annotations on `@Retention(RUNTIME)`.  
   You'd split such a project into two modules:
     * `foo-runtime`, which contains the runtime artifacts that the generated code expects.

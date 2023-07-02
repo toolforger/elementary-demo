@@ -43,6 +43,7 @@ public class NotEmptyProcessor extends AnnotationProcessor {
             }
             if (!isInitializedWithANonemptyConstant(variable)) {
                 logger.error(element, INITIALIZER_EMPTY);
+                //noinspection UnnecessaryContinue (for consistency)
                 continue;
             }
         }
