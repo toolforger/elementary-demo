@@ -78,6 +78,9 @@ public class NotEmptyProcessor extends AnnotationProcessor {
 
     static final String NO_CONSTANT_INITIALIZER = "Variable is not initialized with a constant.";
 
+    /**
+     * Requires that {@code isInitializedWithAConstant(element)} is {@code true}.
+     */
     static boolean isInitializedWithANonemptyConstant(VariableElement variable) {
         return !StringUtils.isEmpty(variable.getConstantValue().toString());
     }

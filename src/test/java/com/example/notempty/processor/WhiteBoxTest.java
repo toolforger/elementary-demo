@@ -8,8 +8,10 @@ import com.karuslabs.utilitary.type.TypeMirrors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import javax.lang.model.element.Element;
 import javax.lang.model.element.VariableElement;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(ToolsExtension.class)
@@ -56,7 +58,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
             @NotEmpty
             public final String nullStringField = null;
 
-            @Case("initializedWithEmptyString")
+            @Label("initializedWithEmptyString")
             @NotEmpty
             public final String emptyField = "";
         }
@@ -73,5 +75,35 @@ public class WhiteBoxTest {
         assertTrue(NotEmptyProcessor.isOfStringType(types, element));
         assertTrue(NotEmptyProcessor.isInitializedWithAConstant(element));
         assertTrue(NotEmptyProcessor.isInitializedWithANonemptyConstant(element));
+    }
+
+    @Test
+    public void testNotAMemberVariable(Labels labels) {
+        Element element = labels.get("notAMemberVariable");
+        assertFalse(NotEmptyProcessor.isAMemberVariable(element));
+    }
+
+    @Test
+    public void testNotOfStringType(Labels labels) {
+        VariableElement element = (VariableElement) labels.get("notOfStringType");
+        assertFalse(NotEmptyProcessor.isOfStringType(types, element));
+    }
+
+    @Test
+    public void testNonConstantInitializer(Labels labels) {
+        VariableElement element = (VariableElement) labels.get("nonConstantInitializer");
+        assertFalse(NotEmptyProcessor.isInitializedWithAConstant(element));
+    }
+
+    @Test
+    public void testNoInitializer(Labels labels) {
+        VariableElement element = (VariableElement) labels.get("noInitializer");
+        assertFalse(NotEmptyProcessor.isInitializedWithAConstant(element));
+    }
+
+    @Test
+    public void testInitializedWithEmptyString(Labels labels) {
+        VariableElement element = (VariableElement) labels.get("initializedWithEmptyString");
+        assertFalse(NotEmptyProcessor.isInitializedWithANonemptyConstant(element));
     }
 }
